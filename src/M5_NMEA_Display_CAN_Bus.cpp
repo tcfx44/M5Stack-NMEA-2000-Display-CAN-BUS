@@ -19,7 +19,7 @@
 #include <Seasmart.h>
 #include <N2kMessages.h>
 #include <WiFi.h>
-#include <M5Stack.h>
+#include <M5Unified.h>
 #include <Preferences.h>
 
 #include "N2kDataToNMEA0183.h"
@@ -72,6 +72,14 @@ const unsigned long ReceiveMessages[] PROGMEM = {
 // Forward declarations
 void HandleNMEA2000Msg(const tN2kMsg &N2kMsg);
 void SendNMEA0183Message(const tNMEA0183Msg &NMEA0183Msg);
+void Display_Main (void);
+void CheckSourceAddressChange();
+void Page_1(void);
+void Page_2(void);
+void Page_3(void);
+void Page_4(void);
+void Page_5(void);
+void DiplayDateTime(void);
 
 double t = 0;  // Time
 int page = 0;  // Initial page to show
@@ -99,8 +107,8 @@ void setup() {
   M5.Lcd.setTextColor(TFT_YELLOW, TFT_BLACK);
   M5.Lcd.setCursor(0, 0, 1);
 
-  ledcDetachPin(SPEAKER_PIN);
-  pinMode(SPEAKER_PIN, INPUT);
+  //ledcDetachPin(SPEAKER_PIN);
+  //pinMode(SPEAKER_PIN, INPUT);
 
   Serial.begin(115200); delay(500);
 
